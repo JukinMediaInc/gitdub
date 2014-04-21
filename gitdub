@@ -141,7 +141,7 @@ class GitDubServer < Sinatra::Base
       return
     end
 
-    event = request['X-GitHub-Event']
+    event = request.env['X-GitHub-Event']
     $logger.info("got event=#{event}") if event
     if event && event == 'ping'
       zen = params['zen']
