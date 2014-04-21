@@ -31,7 +31,7 @@ Integration with github
   2. Click on *Settings* on the top-right corner
   3. Click on *Service Hooks* in the left sidebar
   4. Select the first service *WebHook URLs*
-  5. Enter the URL to reach gitdub, e.g., `http://gitdub.mydomain.com:8888/`
+  5. Enter the URL to reach gitdub, e.g., `http://gitdub.mydomain.com:8888/`, and choose x-www-form-urlencoded requests.
   6. Click *Update Settings* to save your changes
   7. Click again on *WebHook URLs*
   6. Click *Test Hook* to let github initialize your repository
