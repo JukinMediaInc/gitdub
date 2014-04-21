@@ -146,8 +146,8 @@ class GitDubServer < Sinatra::Base
     if event && event == 'ping'
       payload = JSON.parse(params[:payload])
       $logger.info("payload=#{payload}")
-      zen = payload[:zen]
-      hook_id = payload[:hook_id]
+      zen = payload['zen']
+      hook_id = payload['hook_id']
       $logger.info("received ping for hook_id=#{hook_id} with zen='#{zen}'")
     else
       $logger.info("processing non-ping request")
