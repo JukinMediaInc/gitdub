@@ -50,7 +50,8 @@ class GitNotifier
       next unless v
       ["--#{k}"] + (!!v == v ? [] : ["#{v}"]) # Ignore non-boolean values.
     end
-    args['--log'] = '/var/log/git-notifier.log'
+    args << '--log'
+    args << '/var/log/git-notifier.log'
     current = Dir.pwd()
     success = true
     Dir.chdir(path)
