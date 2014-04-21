@@ -144,8 +144,8 @@ class GitDubServer < Sinatra::Base
     event = request.env['HTTP_X_GITHUB_EVENT']
     $logger.info("got event=#{event} in env='#{request.env}'")
     if event && event == 'ping'
-      zen = params['zen']
-      hook_id = params['hook_id']
+      zen = params['payload']['zen']
+      hook_id = params['payload']['hook_id']
       $logger.info("received ping for hook_id=#{hook_id} with zen='#{zen}'")
     else
       $logger.info("processing non-ping request")
