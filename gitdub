@@ -142,7 +142,7 @@ class GitDubServer < Sinatra::Base
     end
 
     event = request.env['HTTP_X_GITHUB_EVENT']
-    $logger.info("got event=#{event} in env='#{request.env}'")
+    $logger.info("got event=#{event} in params='#{params}', env='#{request.env}'")
     if event && event == 'ping'
       payload = JSON.parse(params[:payload])
       $logger.info("payload=#{payload}")
