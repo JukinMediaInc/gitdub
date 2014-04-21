@@ -141,7 +141,13 @@ class GitDubServer < Sinatra::Base
       return
     end
 
-    $gitdub.process(JSON.parse(params[:payload]))
+    if params[:zen]  # ping
+      zen = params[:zen]
+      hook_id = params[:hook_id]
+      $logger.info("received ping for hook_id=#{hook_id} with zen='#{zen}'")
+    else
+      $gitdub.process(JSON.parse(params[:payload]))
+    end
   end
 end
 
