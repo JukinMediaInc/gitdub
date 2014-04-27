@@ -1,0 +1,50 @@
+#!/bin/bash
+# chkconfig: 2345 95 05
+# processname: gitdub
+# pidfile: /var/run/gitdub.pid
+### BEGIN INIT INFO
+# Provides: gitdub
+# Required-Start: $network $syslog
+# Required-Stop: $network $syslog
+# Default-Start:
+# Default-Stop:
+# Description: gitdub start/shutdown script
+# Short-Description: gitdub start and stop
+### END INIT INFO
+
+RETVAL=0
+PIDFILE=/var/run/gitdub.pid
+
+#eval "$(rbenv init -)"
+#export PATH="$HOME/.rbenv/bin:/usr/local/bin:$PATH"
+#export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/libexec:$HOME/.rbenv/plugins/rbenv-gemset/bin:$HOME/.rbenv/plugins/ruby-build/bin:$HOME/.rbenv/bin:$HOME/.rbenv/shims:$HOME/.pyenv/bin:$HOME/.pyenv/shims:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/aws/bin:$HOME/bin"
+
+start() { 
+	cd $HOME/git/gitdub-jukin
+	echo -n $"Starting gitdub: " 
+	nohup bundle exec gitdub /etc/gitdub-config.yml >>/var/log/gitdub.log 2>&1 &
+	#nohup /usr/local/bin/gitdub /etc/gitdub-config.yml >>/var/log/gitdub.log 2>&1 &
+	echo "done." 
+	} 
+stop() { 
+	echo -n "Shutting down gitdub: " 
+	cd $HOME 
+	killall ruby
+	echo "done." 
+	} 
+case "$1" in 
+start) 
+	start 
+	;; 
+stop) 
+	stop 
+	;; 
+restart) 
+	stop 
+	sleep 5
+	start 
+	;; 
+*) 
+	echo "Usage: $0 {start|stop|restart}" 
+esac 
+exit 0
