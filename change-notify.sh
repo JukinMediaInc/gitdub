@@ -24,7 +24,7 @@ CONFIG=/etc/git-commit-notifier-config.yml
 echo "PWD=$(pwd)"
 
 # Assume repository exists in directory and user has already pulled
-cd ${GITDUB_HOME}/${REPO}-nobare
+cd ${GITDUB_HOME}/${REPO}
 git pull --rebase
 echo "PWD=$(pwd)"
 echo ${BEFORE} ${AFTER} ${REF} | git-commit-notifier ${CONFIG} 2>&1 >>/var/log/git-commit-notifier.log

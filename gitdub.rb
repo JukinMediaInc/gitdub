@@ -170,18 +170,19 @@ class GitDub
         opts.merge!(entry.reject { |k, v| k == 'id' })
 
         dir = File.join(user, repo)
+        bare_dir = "#{dir}_bare"
         unless Dir.exists?(dir)
           remote = "ssh://git@github.com/#{user}/#{repo}.git"
 
-          $logger.debug("> git clone --bare #{remote} #{dir}")
-          unless system('git', 'clone', '--bare', remote, dir)
+          $logger.debug("> git clone --bare #{remote} #{bare_dir}")
+          unless system('git', 'clone', '--bare', remote, bare_dir)
             $logger.error("git failed to clone repository #{user}/#{repo}")
-            FileUtils.rm_rf(dir) if File.exists?(dir)
+            FileUtils.rm_rf(bare_dir) if File.exists?(bare_dir)
             return
           end
 
-          $logger.debug("> git clone #{remote} #{dir}-nobare")
-          unless system('git', 'clone', remote, "#{dir}-nobare")
+          $logger.debug("> git clone #{remote} #{dir}")
+          unless system('git', 'clone', remote, dir)
             $logger.error("git failed to clone repository #{user}/#{repo}")
             FileUtils.rm_rf(dir) if File.exists?(dir)
             return
@@ -196,7 +197,7 @@ class GitDub
         type = opts['impl'] ||= 'git-notifier'
         case type
           when 'git-notifier'
-            state_file = File.join(dir, GitNotifier::STATE_FILE)
+            state_file = File.join(bare_dir, GitNotifier::STATE_FILE)
           when 'git-commit-notifier'
             state_file = File.join(dir, GitCommitNotifier::STATE_FILE)
           else
@@ -210,7 +211,7 @@ class GitDub
 
         case type
           when 'git-notifier'
-            return GitNotifier.run(dir, opts)
+            return GitNotifier.run(bare_dir, opts)
           when 'git-commit-notifier'
             opts['repo'] = entry['id']
             opts['before'] = before
