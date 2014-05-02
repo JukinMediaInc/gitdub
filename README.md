@@ -102,3 +102,4 @@ Gitdub comes with a BSD license, please see COPYING for details.
 [git-notifier]: http://www.icir.org/robin/git-notifier
 [sinatra]: http://www.sinatrarb.com
 [post-receive-hook]: https://help.github.com/articles/post-receive-hooks
+
