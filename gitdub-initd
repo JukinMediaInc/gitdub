@@ -20,7 +20,7 @@ PIDFILE=/var/run/gitdub.pid
 #export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/libexec:$HOME/.rbenv/plugins/rbenv-gemset/bin:$HOME/.rbenv/plugins/ruby-build/bin:$HOME/.rbenv/bin:$HOME/.rbenv/shims:$HOME/.pyenv/bin:$HOME/.pyenv/shims:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/aws/bin:$HOME/bin"
 
 start() { 
-	cd $HOME/git/gitdub-jukin
+	cd $HOME/git/JukinMediaInc/gitdub
 	echo -n $"Starting gitdub: " 
 	nohup bundle exec gitdub /etc/gitdub-config.yml >>/var/log/gitdub.log 2>&1 &
 	#nohup /usr/local/bin/gitdub /etc/gitdub-config.yml >>/var/log/gitdub.log 2>&1 &

@@ -1,7 +1,7 @@
-require 'rubygems' 
-require 'bundler'  
+require 'rubygems'
+require 'bundler'
 
-Bundler.require  
-require './gitdub.rb' 
+Bundler.require
+require './gitdub.rb'
 
 run GitDubServer
