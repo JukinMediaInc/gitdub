@@ -103,7 +103,7 @@ class GitCommitNotifier
     $logger.debug("args='#{args}'")
     current = Dir.pwd()
     success = true
-    Dir.chdir(path)
+    Dir.chdir("#{path}_bare")
     begin
       $logger.debug("in dir #{Dir.pwd()} > git fetch origin +refs/heads/*:refs/heads/*")
       success = system('git', 'fetch', 'origin', '+refs/heads/*:refs/heads/*')
