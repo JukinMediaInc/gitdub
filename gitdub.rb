@@ -99,7 +99,7 @@ class GitCommitNotifier
 
   private
 
-  def self.execute(path, args = [])
+  def self.execute(path, arg = [])
     $logger.debug("args='#{args}'")
     current = Dir.pwd()
     success = true
@@ -199,7 +199,7 @@ class GitDub
           when 'git-notifier'
             state_file = File.join(bare_dir, GitNotifier::STATE_FILE)
           when 'git-commit-notifier'
-            state_file = File.join(dir, GitCommitNotifier::STATE_FILE)
+            state_file = File.join(bare_dir, GitCommitNotifier::STATE_FILE)
           else
             $logger.error("unknown notifier #{type}")
             return
