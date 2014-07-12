@@ -199,7 +199,7 @@ class GitDub
           when 'git-notifier'
             state_file = File.join(bare_dir, GitNotifier::STATE_FILE)
           when 'git-commit-notifier'
-            state_file = File.join(bare_dir, GitCommitNotifier::STATE_FILE)
+            state_file = File.join(dir, GitCommitNotifier::STATE_FILE)
           else
             $logger.error("unknown notifier #{type}")
             return
@@ -213,7 +213,7 @@ class GitDub
           when 'git-notifier'
             return GitNotifier.run(bare_dir, opts)
           when 'git-commit-notifier'
-            opts['repo'] = "#{entry['id']}_bare"
+            opts['repo'] = entry['id']
             opts['before'] = before
             opts['after'] = after
             opts['ref'] = ref
