@@ -213,12 +213,12 @@ class GitDub
           when 'git-notifier'
             return GitNotifier.run(bare_dir, opts)
           when 'git-commit-notifier'
-            opts['repo'] = entry['id']
+            opts['repo'] = "#{entry['id']}_bare"
             opts['before'] = before
             opts['after'] = after
             opts['ref'] = ref
             opts['checkout_dir'] = @dir
-            return GitCommitNotifier.run(bare_dir, opts)
+            return GitCommitNotifier.run(dir, opts)
           else
             $logger.error("unknown notifier #{type}")
             return
