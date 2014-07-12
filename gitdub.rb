@@ -217,7 +217,7 @@ class GitDub
             opts['before'] = before
             opts['after'] = after
             opts['ref'] = ref
-            opts['checkout_dir'] = bare_dir
+            opts['checkout_dir'] = @dir
             return GitCommitNotifier.run(bare_dir, opts)
           else
             $logger.error("unknown notifier #{type}")
