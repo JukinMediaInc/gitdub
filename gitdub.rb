@@ -105,7 +105,7 @@ class GitCommitNotifier
     success = true
     Dir.chdir(path)
     begin
-      $logger.debug("in dir #{current} > git fetch origin +refs/heads/*:refs/heads/*")
+      $logger.debug("in dir #{path} > git fetch origin +refs/heads/*:refs/heads/*")
       success = system('git', 'fetch', 'origin', '+refs/heads/*:refs/heads/*')
       raise "git fetch failed in #{path}" unless success
       $logger.debug("> bundle exec ./change-notify.sh #{args.join(' ')}")
