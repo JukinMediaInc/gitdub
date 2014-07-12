@@ -99,7 +99,7 @@ class GitCommitNotifier
 
   private
 
-  def self.execute(path, arg = [])
+  def self.execute(path, args = [])
     $logger.debug("args='#{args}'")
     current = Dir.pwd()
     success = true
